@@ -1,0 +1,33 @@
+ORG 0000H
+
+    MOV R0, #40H     ; Read Pointer
+    MOV R1, #40H     ; Write Pointer
+
+SCAN_LOOP:
+    CJNE R0, #60H, READ_DATA
+    SJMP ZERO_FILL
+
+READ_DATA:
+    MOV A, @R0
+    INC R0
+
+    CJNE A, #0FFH, STORE
+    SJMP SCAN_LOOP
+
+STORE:
+    MOV @R1, A
+    INC R1
+    SJMP SCAN_LOOP
+
+ZERO_FILL:
+    CJNE R1, #60H, WRITE_ZERO
+    SJMP FINISH
+
+WRITE_ZERO:
+    MOV @R1, #00H
+    INC R1
+    SJMP ZERO_FILL
+
+FINISH:
+    SJMP $
+END
