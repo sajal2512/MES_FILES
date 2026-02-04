@@ -1,7 +1,7 @@
  ;Setup: Load values from RAM into registers for processing
 ORG 0000H
-MOV 50H, #67H
-MOV 51H, #30H
+MOV 50H, #30H
+MOV 51H, #67H
     MOV R0, 50H    ; Load Value A
     MOV R1, 51H    ; Load Value B
 
